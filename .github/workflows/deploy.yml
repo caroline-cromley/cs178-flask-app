@@ -53,5 +53,6 @@ jobs:
             # nohup keeps it running after the SSH session closes
             # Output is logged to flask.log for debugging
             nohup python3 flaskapp.py > flask.log 2>&1 &
-
+            disown
+            
             echo "✅ Deploy complete. Flask restarted."
