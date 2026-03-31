@@ -51,12 +51,12 @@ def delete_user():
         return render_template('delete_user.html')
 
 
-@app.route('/display-users')
-def display_users():
-    # hard code a value to the users_list;
+@app.route('/display-recipes')
+def display_recipes():
+    # hard code a value to the recipes_list;
     # note that this could have been a result from an SQL query :) 
-    users_list = (('John','Doe','Comedy'),('Jane', 'Doe','Drama'))
-    return render_template('display_users.html', users = users_list)
+    recipes_list = get_recipes() # this is a function we defined in dbCode.py; it returns a list of recipes from the database
+    return render_template('display_recipes.html', recipes = recipes_list)
 
 
 # these two lines of code should always be the last in the file
