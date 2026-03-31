@@ -7,21 +7,27 @@
 </head>
 <body>
     <div class="container">
-        <h2 class="mt-5">Users List</h2>
+        <h2 class="mt-5">Recipes List</h2>
         <table class="table table-bordered table-striped mt-3">
             <thead class="thead-dark"> <!-- creates a dark background for the table header -->
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Favorite Genre</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Servings</th>
+                    <th>Prep Time</th>
+                    <th>Cook Time</th>
+                    <th>Rating</th>
                 </tr>
             </thead>
             <tbody> <!-- table body -- loop through all of the users -->
-                {% for user in users %}
+                {% for r in recipes %}
                 <tr>
-                    <td>{{ user[0] }}</td>
-                    <td>{{ user[1] }}</td>
-                    <td>{{ user[2] }}</td>
+                    <td>{{ r.title }}</td>
+                    <td>{{ r.category.name }}</td>
+                    <td>{{ r.servings }}</td>
+                    <td>{{ r.prep_minutes }} min</td>
+                    <td>{{ r.cook_minutes }} min</td>
+                    <td>{{ r.rating }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

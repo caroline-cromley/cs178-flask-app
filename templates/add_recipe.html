@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Add New Recipe</title>
+  </head>
+  <body>
+    <form action="{{ url_for('add_recipe_route') }}" method="post">
+      <label>Title:</label><br />
+      <input type="text" name="title" required /><br />
+      <label>Description:</label><br />
+      <input type="text" name="description" /><br />
+      <label>Category:
+        <select name="category_id">
+          {% for c in categories %}
+            <option value="{{ c.id }}">{{ c.name }}</option>
+          {% endfor %}
+        </select>
+      </label><br />
+      <label>Servings:</label><br />
+      <input type="number" name="servings" value="4" /><br />
+      <label>Prep Time (min):</label><br />
+      <input type="number" name="prep_minutes" value="0" /><br />
+      <label>Cook Time (min):</label><br />
+      <input type="number" name="cook_minutes" value="0" /><br />
+      <label>Rating (1-5):</label><br />
+      <input type="number" name="rating" step="0.1" min="1" max="5" /><br />
+      <label>Instructions:</label><br />
+      <textarea name="instructions" rows="4" cols="40"></textarea><br />
+      <input type="submit" value="Add Recipe" />
+    </form>
+  </body>
