@@ -1,13 +1,15 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Delete Recipe</title>
-  </head>
+  <head><title>Delete Recipe</title></head>
   <body>
     <h1>Delete Recipe</h1>
-    <form action="{{ url_for('delete_recipe_route', recipe_id=recipe.id) }}" method="post">
-      <label for="title">Delete Recipe:</label><br />
-      <input type="text" id="title" name="title" required /><br />
+    <form action="{{ url_for('delete_recipe_route') }}" method="post">
+      <label>Select recipe to delete:</label><br />
+      <select name="recipe_id">
+        {% for r in recipes %}
+          <option value="{{ r['id'] }}">{{ r['title'] }}</option>
+        {% endfor %}
+      </select><br /><br />
       <input type="submit" value="Delete Recipe" />
     </form>
   </body>
