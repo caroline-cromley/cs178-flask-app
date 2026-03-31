@@ -15,46 +15,37 @@ app.secret_key = 'your_secret_key' # this is an artifact for using flash display
 def home():
     return render_template('home.html')
 
-@app.route('/add-user', methods=['GET', 'POST'])
-def add_user():
-    if request.method == 'POST':
-        # Extract form data
-        name = request.form['name']
-        genre = request.form['genre']
-        
-        # Process the data (e.g., add it to a database)
-        # For now, let's just print it to the console
-        print("Name:", name, ":", "Favorite Genre:", genre)
-        
-        flash('User added successfully! Huzzah!', 'success')  # 'success' is a category; makes a green banner at the top
-        # Redirect to home page or another page upon successful submission
-        return redirect(url_for('home'))
-    else:
-        # Render the form page if the request method is GET
-        return render_template('add_user.html')
 
-@app.route('/delete-user',methods=['GET', 'POST'])
-def delete_user():
+@app.route('/add-recipe', methods=['GET', 'POST'])
+def add_recipe():
     if request.method == 'POST':
-        # Extract form data
-        name = request.form['name']
+        # NEED TO INSERT INTO DB
+        flash('Recipe added!', 'success')
+        return redirect(url_for('home'))
         
-        # Process the data (e.g., add it to a database)
-        # For now, let's just print it to the console
-        print("Name to delete:", name)
-        
-        flash('User deleted successfully! Hoorah!', 'warning') 
+    categories = execute_query("SELECT id, name FROM categories")
+    return render_template('add_recipe.html', categories=categories)
+
+
+@app.route('/delete-recipe',methods=['GET', 'POST'])
+def delete_recipe_route():
+    if request.method == 'POST':
+        # NEED TO DELETE FROM DB
+        flash('Recipe deleted successfully! Hoorah!', 'warning') 
         # Redirect to home page or another page upon successful submission
         return redirect(url_for('home'))
-    else:
-        # Render the form page if the request method is GET
-        return render_template('delete_user.html')
+    recipes = execute_query("SELECT id, title FROM recipes ORDER BY title")
+    return render_template('delete_recipe.html', recipes=recipes)
+
+
+@app.route('/update-recipe',methods=['GET', 'POST'])
+def update_recipe_route():
+    # NEED TO IMPLEMENT UPDATE
+    return render_template('home.html')
 
 
 @app.route('/display-recipes')
 def display_recipes():
-    # hard code a value to the recipes_list;
-    # note that this could have been a result from an SQL query :) 
     recipes_list = get_recipes() # this is a function we defined in dbCode.py; it returns a list of recipes from the database
     return render_template('display_recipes.html', recipes = recipes_list)
 
