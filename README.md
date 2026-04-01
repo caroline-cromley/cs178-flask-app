@@ -1,8 +1,8 @@
-# [Your Project Name Here]
+# Project 1: Recipe Book
 
 **CS178: Cloud and Database Systems — Project #1**
-**Author:** [Your Name]
-**GitHub:** [your-username]
+**Author:** Caroline Cromley
+**GitHub:** caroline-cromley
 
 ---
 

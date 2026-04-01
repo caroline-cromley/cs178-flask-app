@@ -19,9 +19,19 @@ def home():
 @app.route('/add-recipe', methods=['GET', 'POST'])
 def add_recipe():
     if request.method == 'POST':
-        # NEED TO INSERT INTO DB
+        add_recipe(
+            request.form['title'],
+            request.form['description'],
+            request.form['category_id'],
+            request.form['servings'],
+            request.form['prep_minutes'],
+            request.form['cook_minutes'],
+            request.form['rating'],
+            request.form['instructions']
+        )
         flash('Recipe added!', 'success')
         return redirect(url_for('home'))
+
         
     categories = execute_query("SELECT id, name FROM categories")
     return render_template('add_recipe.html', categories=categories)

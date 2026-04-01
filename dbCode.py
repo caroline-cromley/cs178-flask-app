@@ -34,6 +34,19 @@ def get_recipes():
     return execute_query(query)
 
 
+def add_recipe(title, description, category_id, servings, prep_minutes, cook_minutes, rating, instructions):
+    """Inserts a new recipe into the database."""
+    conn = get_conn()
+    cur = conn.cursor()
+    cur.execute("""
+        INSERT INTO recipes (title, description, category_id, servings, prep_minutes, cook_minutes, rating, instructions)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+    """, (title, description, category_id, servings, prep_minutes, cook_minutes, rating, instructions))
+    conn.commit()
+    cur.close()
+    conn.close()
+
+
 def update_recipe_rating(recipe_id, rating):
     """Updates the rating of a recipe."""
     conn = get_conn()
