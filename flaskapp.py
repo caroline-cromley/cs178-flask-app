@@ -17,7 +17,7 @@ def home():
 
 
 @app.route('/add-recipe', methods=['GET', 'POST'])
-def add_recipe():
+def add_recipe_page():
     if request.method == 'POST':
         add_recipe(
             request.form['title'],
