@@ -31,6 +31,8 @@ def get_recipes():
         JOIN categories c ON r.category_id = c.id
         ORDER BY r.rating DESC
     """
+    return execute_query(query)
+
 
 def update_recipe_rating(recipe_id, rating):
     """Updates the rating of a recipe."""
@@ -40,5 +42,3 @@ def update_recipe_rating(recipe_id, rating):
     conn.commit()
     cur.close()
     conn.close()
-
-    return execute_query(query)
