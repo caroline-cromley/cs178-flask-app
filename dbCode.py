@@ -26,9 +26,19 @@ def execute_query(query, args=()):
 def get_recipes():
     """Returns a list of all recipes from the database."""
     query = """
-        SELECT r.id, r.title, r.servings, r.prep_minutes, r.cook_minutes, r.rating, c.name AS category, c.emoji
+        SELECT r.id, r.title, r.servings, r.prep_minutes, r.cook_minutes, r.rating, c.name AS category
         FROM recipes r
         JOIN categories c ON r.category_id = c.id
         ORDER BY r.rating DESC
     """
+
+def update_recipe_rating(recipe_id, rating):
+    """Updates the rating of a recipe."""
+    conn = get_conn()
+    cur = conn.cursor()
+    cur.execute("UPDATE recipes SET rating = %s WHERE id = %s", (rating, recipe_id))
+    conn.commit()
+    cur.close()
+    conn.close()
+
     return execute_query(query)

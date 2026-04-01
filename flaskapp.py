@@ -38,10 +38,17 @@ def delete_recipe_route():
     return render_template('delete_recipe.html', recipes=recipes)
 
 
-@app.route('/update-recipe',methods=['GET', 'POST'])
+@app.route('/update-recipe', methods=['GET', 'POST'])
 def update_recipe_route():
-    # NEED TO IMPLEMENT UPDATE
-    return render_template('home.html')
+    if request.method == 'POST':
+        recipe_id = request.form['recipe_id']
+        rating = request.form['rating']
+        update_recipe_rating(recipe_id, rating)
+        flash('Recipe updated!', 'success')
+        return redirect(url_for('home'))
+    recipes = execute_query("SELECT id, title FROM recipes ORDER BY title")
+    return render_template('update_recipe.html', recipes=recipes)
+
 
 
 @app.route('/display-recipes')

@@ -14,7 +14,6 @@ USE recipe_tracker;
 CREATE TABLE categories (
   id    INT          NOT NULL AUTO_INCREMENT,
   name  VARCHAR(100) NOT NULL UNIQUE,
-  emoji VARCHAR(10),
   PRIMARY KEY (id)
 );
 
@@ -80,12 +79,6 @@ CREATE INDEX idx_tags_name         ON tags(name);
 -- ============================================================
 -- SEED DATA: categories
 -- ============================================================
-INSERT INTO categories (name, emoji) VALUES
-  ('Breakfast', '🍳'),
-  ('Dinner',    '🍽️'),
-  ('Dessert',   '🍰'),
-  ('Soup',      '🍜'),
-  ('Salad',     '🥗');
 
 -- ============================================================
 -- SEED DATA: ingredients
