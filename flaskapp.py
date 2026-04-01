@@ -40,9 +40,8 @@ def add_recipe_page():
 @app.route('/delete-recipe',methods=['GET', 'POST'])
 def delete_recipe_route():
     if request.method == 'POST':
-        # NEED TO DELETE FROM DB
-        flash('Recipe deleted successfully! Hoorah!', 'warning') 
-        # Redirect to home page or another page upon successful submission
+        delete_recipe(request.form['recipe_id'])
+        flash('Recipe deleted successfully!', 'warning')
         return redirect(url_for('home'))
     recipes = execute_query("SELECT id, title FROM recipes ORDER BY title")
     return render_template('delete_recipe.html', recipes=recipes)

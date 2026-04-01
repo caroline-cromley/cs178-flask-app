@@ -47,6 +47,16 @@ def add_recipe(title, description, category_id, servings, prep_minutes, cook_min
     conn.close()
 
 
+def delete_recipe(recipe_id):
+    """Deletes a recipe from the database by ID."""
+    conn = get_conn()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM recipes WHERE id = %s", (recipe_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+
+
 def update_recipe_rating(recipe_id, rating):
     """Updates the rating of a recipe."""
     conn = get_conn()
