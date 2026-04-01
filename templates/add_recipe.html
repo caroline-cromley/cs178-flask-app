@@ -5,6 +5,7 @@
   </head>
   <body>
     <form action="{{ url_for('add_recipe') }}" method="post">
+      <h1>Add Recipe</h1>
       <label>Title:</label><br />
       <input type="text" name="title" required /><br />
       <label>Description:</label><br />
@@ -12,7 +13,7 @@
       <label>Category:
         <select name="category_id">
           {% for c in categories %}
-            <option value="{{ c.id }}">{{ c.name }}</option>
+            <option value="{{ c['id'] }}">{{ c['name'] }}</option>
           {% endfor %}
         </select>
       </label><br />
