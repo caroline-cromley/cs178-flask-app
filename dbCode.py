@@ -4,6 +4,17 @@
 
 import pymysql
 import creds
+import boto3
+import uuid
+
+dynamodb = boto3.resource(
+    'dynamodb',
+    aws_access_key_id=creds.aws_access_key_id,
+    aws_secret_access_key=creds.aws_secret_access_key,
+    region_name=creds.region_name
+)
+reviews_table = dynamodb.Table('RecipeReviews')
+
 
 def get_conn():
     """Returns a connection to the MySQL RDS instance."""
@@ -45,6 +56,25 @@ def add_recipe(title, description, category_id, servings, prep_minutes, cook_min
     conn.commit()
     cur.close()
     conn.close()
+
+
+def add_review(recipe_id, reviewer_name, stars, comment):
+    """Inserts a new review into the DynamoDB table."""
+    reviews_table.put_item(Item={
+        'recipe_id': recipe_id,
+        'review_id': str(uuid.uuid4()),
+        'reviewer_name': reviewer_name,
+        'stars': stars,
+        'comment': comment
+    })
+
+
+def get_reviews(recipe_id):
+    """Retrieves all reviews for a given recipe ID from DynamoDB."""
+    response = reviews_table.query(
+        KeyConditionExpression=boto3.dynamodb.conditions.Key('recipe_id').eq(recipe_id)
+    )
+    return response.get('Items', [])
 
 
 def delete_recipe(recipe_id):

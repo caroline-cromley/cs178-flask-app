@@ -17,6 +17,7 @@
                     <th>Prep Time</th>
                     <th>Cook Time</th>
                     <th>Rating</th>
+                    <th>Reviews</th>
                 </tr>
             </thead>
             <tbody> <!-- table body -- loop through all of the users -->
@@ -28,6 +29,7 @@
                     <td>{{ r['prep_minutes'] }} min</td>
                     <td>{{ r['cook_minutes'] }} min</td>
                     <td>{{ r['rating'] }}</td>
+                    <td><a href="{{ url_for('reviews', recipe_id=r['id']) }}">Reviews</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
