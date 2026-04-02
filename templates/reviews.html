@@ -13,7 +13,7 @@
         {% endwith %}
 
         <h2>Leave a Review</h2>
-        <form action="{{ url_for('submit_review', recipe_id=recipe['id']) }}" method="post">
+        <form action="{{ url_for('reviews', recipe_id=recipe_id) }}" method="post">
             <label>Name:</label><br>
             <input type="text" name="reviewer_name" required><br><br>
             <label>Stars (1-5)</label><br />
