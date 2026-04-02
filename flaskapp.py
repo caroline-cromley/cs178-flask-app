@@ -75,8 +75,7 @@ def reviews(recipe_id):
     
     recipe = execute_query("SELECT title FROM recipes WHERE id = %s", (recipe_id,))
     reviews_list = get_reviews(recipe_id)
-    return render_template('reviews.html', reviews=reviews_list, recipe_id=recipe_id)
-
+    return render_template('reviews.html', recipe=recipe[0], reviews=reviews_list, recipe_id=recipe_id)
 
 # these two lines of code should always be the last in the file
 if __name__ == '__main__':
