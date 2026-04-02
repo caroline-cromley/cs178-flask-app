@@ -69,7 +69,7 @@ def display_recipes():
 @app.route('/reviews/<int:recipe_id>', methods=['GET', 'POST'])
 def reviews(recipe_id):
     if request.method == 'POST':
-        add_review(recipe_id, request.form['reviewer_name'], int(request.form['rating']), request.form['comment'])
+        add_review(recipe_id, request.form['reviewer_name'], int(request.form['stars']), request.form['comment'])
         flash('Review added!', 'success')
         return redirect(url_for('reviews', recipe_id=recipe_id))
     
