@@ -7,7 +7,7 @@
       <label>Select recipe to delete:</label><br />
       <select name="recipe_id">
         {% for r in recipes %}
-          <option value="{{ r['id'] }}">{{ r['title'] }}</option>
+          <option value="{{ r['id'] }}">{{ r['title'] }}</option> <!--Claude AI used to create a dropdown box to select the correct recipe name.-->
         {% endfor %}
       </select><br /><br />
       <input type="submit" value="Delete Recipe" />

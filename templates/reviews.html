@@ -25,7 +25,7 @@
 
         <h2>All Reviews</h2>
         {% for r in reviews %}
-            <p><strong>{{ r['reviewer_name'] }}</strong> — {{ r['stars'] }} stars<br />{{ r['comment'] }}</p>
+            <p><strong>{{ r['reviewer_name'] }}</strong> — {{ r['stars'] }} stars<br />{{ r['comment'] }}</p> <!--Claude AI used to create a "star" rating metric.-->
             <hr />
         {% else %}
             <p>No reviews yet.</p>

@@ -1,9 +1,6 @@
-# author: T. Urness and M. Moore
+# author: Caroline Cromley
 # description: Flask example using redirect, url_for, and flash
-# credit: the template html files were constructed with the help of ChatGPT
 
-from flask import Flask
-from flask import render_template
 from flask import Flask, render_template, request, redirect, url_for, flash
 from dbCode import *
 
@@ -73,7 +70,7 @@ def reviews(recipe_id):
         flash('Review added!', 'success')
         return redirect(url_for('reviews', recipe_id=recipe_id))
     
-    recipe = execute_query("SELECT title FROM recipes WHERE id = %s", (recipe_id,))
+    recipe = execute_query("SELECT title FROM recipes WHERE id = %s", (recipe_id,)) #Claude AI was used in this section for debugging and structural errors.
     reviews_list = get_reviews(recipe_id)
     return render_template('reviews.html', recipe=recipe[0], reviews=reviews_list, recipe_id=recipe_id)
 
