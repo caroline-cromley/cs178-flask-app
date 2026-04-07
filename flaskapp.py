@@ -28,8 +28,7 @@ def add_recipe_page():
         )
         flash('Recipe added!', 'success')
         return redirect(url_for('home'))
-
-        
+     
     categories = execute_query("SELECT id, name FROM categories")
     return render_template('add_recipe.html', categories=categories)
 
